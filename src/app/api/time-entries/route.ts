@@ -66,6 +66,14 @@ export async function POST(req: Request) {
       projectId: body.projectId,
     });
 
+    console.log("POST /api/time-entries created:", {
+      id: entry.id,
+      projectId: entry.projectId,
+      start: entry.start,
+      end: entry.end,
+      duration: entry.duration,
+    });
+
     return NextResponse.json(entry, { status: 201 });
   } catch (error) {
     console.error("POST /api/time-entries failed:", error);

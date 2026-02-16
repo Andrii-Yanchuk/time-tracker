@@ -1,6 +1,6 @@
 # Chrono — Time Tracking App
 
-Chrono is a full-stack time tracking application built with **Next.js App Router**. It helps you **track work sessions in real-time**, **organize entries by project**, and **generate reports** (including CSV export) powered by a SQLite database via Prisma.
+Chrono is a full-stack time tracking application built with **Next.js App Router**. It helps you **track work sessions in real-time**, **organize entries by project**, and **generate reports** (including CSV export) powered by a PostgreSQL database via Prisma.
 
 ## Project Overview
 
@@ -59,7 +59,7 @@ Repositories abstract database access behind a small, consistent API.
 | -------------- | ------------------------------- |
 | Framework      | Next.js (App Router)            |
 | Language       | TypeScript                      |
-| Database / ORM | Prisma + SQLite                 |
+| Database / ORM | Prisma + PostgreSQL (Supabase)  |
 | UI Components  | shadcn/ui (Radix UI primitives) |
 | Styling        | Tailwind CSS                    |
 
@@ -121,10 +121,11 @@ npm install
 Create a `.env` file in the project root:
 
 ```bash
-DATABASE_URL="file:./prisma/dev.db"
+DATABASE_URL="<your-supabase-connection-string>"
+DIRECT_URL="<your-supabase-direct-connection-string>"
 ```
 
-### 4) Set up the database (Prisma + SQLite)
+### 4) Set up the database (Prisma + PostgreSQL)
 
 Run migrations and generate Prisma Client:
 
@@ -132,6 +133,12 @@ Run migrations and generate Prisma Client:
 npx prisma migrate dev
 npx prisma generate
 ```
+
+### Health check
+
+You can verify database connectivity using:
+
+- `GET /api/health`
 
 ### 5) Start the development server
 
